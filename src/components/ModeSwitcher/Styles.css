@@ -1,0 +1,26 @@
+.ModeSwitcher {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ModeSwitcher button {
+    padding: 5px;
+    margin: 5px;
+
+    border: 1px solid #0d3380;
+
+    background: #0d3380;
+
+    color: #ffffff;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.ModeSwitcher button:disabled {
+    border: 1px solid #5685ba;
+
+    background: #5685ba;
+
+    color: #d4dde6;
+}

@@ -1,0 +1,23 @@
+.Search-form {
+    text-align: center;
+}
+
+.Search-form input {
+    border: 1px solid #0d3380;
+    padding: 5px 10px;
+
+    font-size: 15px;
+    color: #373737;
+}
+
+.Search-form button {
+    border: 1px solid #0d3380;
+    padding: 5px;
+
+    background: #0d3380;
+
+    color: #ffffff;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}

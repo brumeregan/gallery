@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Styles.css';
 
 export default class Search extends Component {
 
@@ -43,7 +44,7 @@ export default class Search extends Component {
 
        return (
            <React.Fragment>
-               <form onSubmit = { this._handlerForSubmit }>
+               <form onSubmit = { this._handlerForSubmit } className = 'Search-form'>
                    <input type = "text"
                           value = { text }
                           onChange = { this._searchUpdate }

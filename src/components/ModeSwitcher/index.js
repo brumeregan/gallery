@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import './Styles.css';
 
 export default class ModSwitcher extends Component {
-    state = {
-        mode: 'list'
-    };
+
+    componentDidMount() {
+
+    }
 
     _updateMode = (mode) => {
         const { _updateGalleryMode } = this.props;
@@ -11,14 +13,18 @@ export default class ModSwitcher extends Component {
         _updateGalleryMode(mode);
     };
 
+
+
     render() {
-        const { mode } = this.state;
+        const { mode } = this.props;
 
         return (
             <React.Fragment>
-                <div>
-                    <button onClick = {() => this._updateMode('list') }>List</button>
-                    <button onClick = {() => this._updateMode('gallery') }>Gallery</button>
+                <div className = 'ModeSwitcher' >
+                    <button onClick = {() => this._updateMode('list') }
+                            disabled = { mode === 'list' }>List</button>
+                    <button onClick = {() => this._updateMode('gallery') }
+                            disabled = { mode === 'gallery' }>Gallery</button>
                 </div>
             </React.Fragment>
         )

@@ -79,22 +79,23 @@ class App extends Component {
 
   render() {
       const { modal } = this.state;
+      const modalClass = modal ? 'Modal-open' : '';
 
       const modalEl = modal
                       && <Modal { ...this.state }
                       _closeModalWindow = { this._closeModalWindow }/>;
 
     return (
-        <React.Fragment>
+        <div className = { modalClass } >
             <Search _search = { this._search } />
-            <ModeSwitcher _updateGalleryMode = { this._updateGalleryMode }/>
+            <ModeSwitcher _updateGalleryMode = { this._updateGalleryMode } mode = { this.state.mode } />
             <Gallery { ...this.state }
                      _openModalWindow = { this._openModalWindow }
                      _toggleModalWindow = { this._toggleModalWindow }
                      _selectPhoto = { this._selectPhoto }
             />
             { modalEl }
-        </React.Fragment>
+        </div>
     );
   }
 }
