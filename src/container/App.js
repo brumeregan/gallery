@@ -2,19 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import { store } from '../redux-components/init/store';
 
-import { Mock } from '../__Mock';
-
-
 import Search from '../components/Search';
 import ModeSwitcher from '../components/ModeSwitcher';
 import Gallery from '../components/Gallery';
 import Modal from '../components/Modal';
 
 const API_KEY = '2654390-274676d357e6d0775fd95c51f';
-const word = 'cat';
-
-const API = `http://pixabay.com/api/?key=2654390-274676d357e6d0775fd95c51f&q=${encodeURIComponent(word)}&image_type=photo&per_page=8`;
-//&q=' + word + '&image_type=photo&per_page=8
+const API = `http://pixabay.com/api/?key=${API_KEY}`;
 
 
 class App extends Component {
@@ -27,22 +21,24 @@ class App extends Component {
     };
 
     componentDidMount () {
-        // console.log('store', store.getState());
-
         this._getPhotosAsync();
     };
 
-    _getPhotosAsync = () => {
-        // TODO make api call to pixabay
-        const response = Mock;
-        this.setState(() => ({
-            photos: response.hits
-        }));
-
+    _getAPIUrl = (query, count = 8) => {
+        return `${API}&q=${encodeURIComponent(query)}&image_type=photo&per_page=${count}`
     };
 
-    _updateGallery = () => {
-        // make call to server
+    _getPhotosAsync = (query = '') => {
+        const url = this._getAPIUrl(query);
+
+        fetch(url).then((res) => {
+            return res.json();
+        }).then((res) => {
+            this.setState(() => ({
+                photos: res.hits
+            }));
+        }).catch(err => console.log('err:' + err));
+
     };
 
     _updateGalleryMode = (newMode) => {
@@ -52,7 +48,7 @@ class App extends Component {
     };
 
     _search = (text) => {
-        console.log('App', text);
+        this._getPhotosAsync(text);
     };
 
     _toggleModalWindow = () => {
@@ -75,13 +71,10 @@ class App extends Component {
     };
 
     _selectPhoto = (photo) => {
-        this.setState(({ selectedImage }) => ({
+        this.setState(() => ({
             selectedImage: photo
         }));
-
-        console.log('_selectPhoto', photo);
     };
-
 
 
   render() {
